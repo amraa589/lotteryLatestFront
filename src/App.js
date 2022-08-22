@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { SendOutlined } from "@mui/icons-material";
+import { Button } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./views/login";
+import Dashboard from "./views/dashboard/dashboard";
+import User from "./views/dashboard/user/index";
+import Lottery from "./views/dashboard/lottery/index";
+import Customer from "./views/dashboard/customer/index";
+import Winner from "./views/dashboard/winner/winner";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={createTheme({})}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/user" element={<User />} />
+          <Route path="/dashboard/lottery" element={<Lottery />} />
+          <Route path="/dashboard/customer" element={<Customer />} />
+          <Route path="/dashboard/winner" element={<Winner />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
