@@ -13,6 +13,7 @@ const Login = (props) => {
       const response = await axios.post("/api/v1/auth/authenticate", values);
       navigate("/dashboard")
       console.log(response.data);
+      localStorage.setItem("data", JSON.stringify(response.data))
     } catch (error) {}
 
     // axios.post("/api/v1/auth/authenticate", values).then(function(response){

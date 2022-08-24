@@ -1,23 +1,24 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { flexbox } from "@mui/system";
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Drawer from "../../components/drawer"
-
+import React, { useEffect, useLayoutEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import Drawer from "../../components/drawer";
 
 const DashBoard = (props) => {
+  // process.env.REACT_APP_AMARAA
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const tmp = localStorage.getItem("data");
+    if(!tmp) navigate("/");
+  }, [])
   return (
-    // <BrowserRouter>
-    //     <Route path="/dashboard/user" element={<User/>}/>
-    //         <Route path="/dashboard/lottery" element={<Lottery/>}/>
-    //         <Route path="/dashboard/customer" element={<Customer/>}/>
-    //         <Route path="/dashboard/winner" element={<Winner/>}/>
-    // </BrowserRouter>
-    <Drawer/>
-
-
-
+    <div>
+      <Drawer />
+      <Box sx={{ paddingLeft: 32 }}>
+        <Outlet />
+      </Box>
+    </div>
   );
 };
 
